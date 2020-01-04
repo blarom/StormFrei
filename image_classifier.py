@@ -452,4 +452,5 @@ def main():
             print_status(f"Failed to classify " + image_paths[img_index])
     plt.show()
 
+
 main()
