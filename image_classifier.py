@@ -15,6 +15,9 @@ from torchvision import datasets, transforms, models
 from PIL import Image
 from datetime import datetime, timedelta
 from torch.utils.data.sampler import SubsetRandomSampler
+from PIL import ImageFile
+
+ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 DATA_DIR = './data'
 START_TIME = datetime.now()
@@ -160,7 +163,7 @@ def train_model():
     # Replace default classifier with our new classifier
     model.classifier = classifier
 
-    print_status("\tAdapting Torch to computation engine type: " + "cuda" if torch.cuda.is_available() else "cpu")
+    print_status("\tAdapting Torch to computation engine type: " + ("cuda" if torch.cuda.is_available() else "cpu"))
     # Adapting Torch to computation engine type
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -415,8 +418,8 @@ def get_random_image_paths(num_images):
 
 def main():
     print_status("Starting model training")
-    # model = train_model()
-    # torch.save(model, 'stormfrei_model.pth')
+    model = train_model()
+    torch.save(model, 'stormfrei_model.pth')
 
     print_status("Starting image classifier")
     model = torch.load('stormfrei_model.pth')
@@ -448,7 +451,6 @@ def main():
         except Exception:
             print_status(f"Failed to classify " + image_paths[img_index])
     plt.show()
-
 
 
 main()
