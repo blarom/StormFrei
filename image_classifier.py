@@ -275,11 +275,11 @@ def train_model():
 
         # Print out the information
         print_status("\t\tResults:")
-        print('\t\t\tTest Accuracy: ', accuracy / len(val_loader))
-        print('\t\t\tTest Loss: ', test_loss / len(val_loader))
-        print(f'\t\t\tEpoch: {epoch + 1}/{epochs}'
-              f'\t\t\tTraining Loss: {train_loss / print_every:.3f}'
-              f'\t\t\tValidation Loss: {validation_loss / print_every:.3f}')
+        print_status('\t\t\tTest Accuracy: ' + str(accuracy / len(val_loader)))
+        print_status('\t\t\tTest Loss: ' + str(test_loss / len(val_loader)))
+        print_status(f'\t\t\tEpoch: {epoch + 1}/{epochs}')
+        print_status(f'\t\t\tTraining Loss: {train_loss / print_every:.3f}')
+        print_status(f'\t\t\tValidation Loss: {validation_loss / print_every:.3f}')
 
         accuracies.append(accuracy / len(val_loader))
         train_losses.append(train_loss / len(train_loader))
@@ -451,7 +451,6 @@ def main():
         except Exception:
             print_status(f"Failed to classify " + image_paths[img_index])
     plt.show()
-
 
 
 main()
