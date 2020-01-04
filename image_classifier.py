@@ -225,7 +225,7 @@ def train_model():
             # Displaying the losses and calculating accuracy every 10 batches
             counter += 1
             if counter % print_every == 0:
-                print_status("\t\t\tClass ", counter, " out of ", len(train_loader))
+                print_status("\t\t\tClass " + str(counter) + " out of " + str(len(train_loader)))
 
         print_status("\t\tEvaluating the model")
         # Evaluating the model
@@ -264,7 +264,7 @@ def train_model():
                 # Print the progress of our evaluation
                 counter += 1
                 if counter % print_every == 0:
-                    print_status("\t\t\tClass ", counter, " out of ", len(val_loader))
+                    print_status("\t\t\tClass " + str(counter) + " out of " + str(len(train_loader)))
 
         # Get the average loss for the entire epoch
         train_loss = train_loss / len(train_loader.dataset)
